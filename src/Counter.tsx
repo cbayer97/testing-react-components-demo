@@ -1,22 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 
-export const Counter: React.FC = () => {
-  const [value, setValue] = useState(0)
-  const decrementValue = () => setValue((value) => --value)
-  const incrementValue = () => setValue((value) => ++value)
-  const saveValue = () => localStorage.setItem('value', value.toString())
+export const CounterFC: React.FC = () => {
+  const [count, setCount] = useState(0)
+  const decrementCount = () => setCount((value) => --value)
+  const incrementCount = () => setCount((value) => ++value)
+  const saveCount = () => localStorage.setItem('count', count.toString())
 
   useEffect(() => {
-    const valueFromStorage = localStorage.getItem('value')
-    valueFromStorage && setValue(+valueFromStorage)
+    const countFromStorage = localStorage.getItem('count')
+    countFromStorage && setCount(+countFromStorage)
   }, [])
 
   return (
     <div>
-      <div>{value}</div>
-      <button onClick={decrementValue}>-</button>
-      <button onClick={incrementValue}>+</button>
-      <button onClick={saveValue}>Save</button>
+      <div>{count}</div>
+      <button onClick={decrementCount}>-</button>
+      <button onClick={incrementCount}>+</button>
+      <button onClick={saveCount}>Save</button>
+    </div>
+  )
+}
+
+export class CounterCC extends Component {
+  state = { count: [0] }
+  decrementCount = () =>
+    this.setState((prevState: { count: number[] }) => ({
+      count: [prevState.count[0] - 1],
+    }))
+  incrementCount = () =>
+    this.setState((prevState: { count: number[] }) => ({
+      count: [prevState.count[0] + 1],
+    }))
+  saveCount = () => localStorage.setItem('count', this.state.count[0].toString())
+
+  componentDidMount = () => {
+    const countFromStorage = localStorage.getItem('count')
+    countFromStorage && this.setState(() => ({ count: [+countFromStorage] }))
+  }
+
+  render = () => (
+    <div>
+      <div>{this.state.count[0]}</div>
+      <button onClick={this.decrementCount}>-</button>
+      <button onClick={this.incrementCount}>+</button>
+      <button onClick={this.saveCount}>Save</button>
     </div>
   )
 }

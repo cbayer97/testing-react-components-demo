@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css'
-import { Counter } from './Counter'
+import { CounterCC } from './Counter'
 
 function App() {
-  return <Counter />
+  return <CounterCC />
 }
 
 export default App

@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Counter } from './Counter'
+import { CounterCC } from './Counter'
 
-test('Counter', () => {
+test('Counter RTL', () => {
   (localStorage.getItem as jest.Mock).mockReturnValueOnce('3')
-  render(<Counter />)
+  render(<CounterCC />)
 
   expect(screen.getByText('3')).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: '+' }))
@@ -15,5 +15,5 @@ test('Counter', () => {
   fireEvent.click(screen.getByRole('button', { name: '-' }))
   fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
-  expect(localStorage.setItem).toHaveBeenCalledWith('value', '4')
+  expect(localStorage.setItem).toHaveBeenCalledWith('count', '4')
 })
