@@ -2,8 +2,8 @@ import React, { Component, useEffect, useState } from 'react'
 
 export const CounterFC: React.FC = () => {
   const [count, setCount] = useState(0)
-  const decrementCount = () => setCount((value) => --value)
-  const incrementCount = () => setCount((value) => ++value)
+  const decrementCount = () => setCount((value) => value - 1)
+  const incrementCount = () => setCount((value) => value + 1)
   const saveCount = () => localStorage.setItem('count', count.toString())
 
   useEffect(() => {
