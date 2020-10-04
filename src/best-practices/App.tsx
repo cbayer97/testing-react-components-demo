@@ -2,8 +2,7 @@ import React from 'react'
 
 import { NameInput } from './NameInput'
 import { SubmitButton } from './SubmitButton'
-import { DisabledButton } from './DisabledButton'
-import { DebouncedInput } from './DebouncedInput'
+import { EnabledButton } from './EnabledButton'
 import { DebouncedButton } from './DebouncedButton'
 
 export const App: React.FC = () => (
@@ -15,18 +14,12 @@ export const App: React.FC = () => (
     <br />
     <br />
     <br />
-    <DisabledButton />
+    <EnabledButton />
     <br />
     <br />
     <br />
     <br />
     <br />
     <DebouncedButton />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <DebouncedInput />
   </>
 )

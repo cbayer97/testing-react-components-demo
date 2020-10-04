@@ -1,6 +1,7 @@
 * {
     font-size: larger;
     margin: 5px;
+    color: inherit;
 }
 
 #root {

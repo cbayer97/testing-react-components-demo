@@ -3,9 +3,16 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
 import { SubmitButton } from './SubmitButton'
-import { DisabledButton } from './DisabledButton'
-import { DebouncedInput } from './DebouncedInput'
+import { EnabledButton } from './EnabledButton'
 import { DebouncedButton } from './DebouncedButton'
+
+test('Use screen to access selectors', () => {
+  const { getByText } = render(<div>SomeText</div>)
+
+  expect(getByText('SomeText')).toBeInTheDocument()
+
+  expect(screen.getByText('SomeText')).toBeInTheDocument()
+})
 
 test('Use getBy* instead of queryBy* for an existing element', () => {
   render(<div>SomeText</div>)
@@ -42,13 +49,13 @@ test('Use queries accessible to everyone', () => {
 })
 
 test('Dont use snapshot tests', () => {
-  const submitButton = render(<SubmitButton />)
-  expect(submitButton).toMatchSnapshot()
+  const button = render(<EnabledButton />)
+  expect(button).toMatchSnapshot()
 })
 
 test('Use jest-dom matchers', () => {
-  render(<DisabledButton />)
-  const disabledButton = screen.getByRole('button', { name: 'Disabled Button' })
+  render(<EnabledButton />)
+  const disabledButton = screen.getByRole('button', { name: 'Enabled Button' })
 
   expect(disabledButton.disabled).toBeTruthy()
 
@@ -59,15 +66,4 @@ test('Wait for elements to appear', async () => {
   render(<DebouncedButton />)
 
   expect(screen.getByRole('button', { name: 'Debounced Button' })).toBeInTheDocument()
-})
-
-test('Async testing', async () => {
-  render(<DebouncedInput />)
-  const input = screen.getByRole('textbox', { name: 'Debounced Value Input:' })
-
-  userEvent.type(input, 'Hello World!')
-
-  await waitFor(() => {
-    expect(screen.getByText('Hello World!')).toBeInTheDocument()
-  })
 })

@@ -1,24 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Use snapshot tests 1`] = `
+exports[`Dont use snapshot tests 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        data-testid="submit-button"
-        style="border: 1px solid black; cursor: pointer;"
+        style="color: red;"
       >
-        Submit Name
+        <button>
+          Enabled Button
+        </button>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      data-testid="submit-button"
-      style="border: 1px solid black; cursor: pointer;"
+      style="color: red;"
     >
-      Submit Name
+      <button>
+        Enabled Button
+      </button>
     </div>
   </div>,
   "debug": [Function],
