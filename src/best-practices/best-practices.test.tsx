@@ -8,11 +8,11 @@ import { DebouncedInput } from './DebouncedInput'
 import { DebouncedButton } from './DebouncedButton'
 
 test('Use getBy* instead of queryBy* for an existing element', () => {
-  render(<div>Content</div>)
+  render(<div>SomeText</div>)
 
-  expect(screen.queryByText('Not in the document')).toBeInTheDocument()
+  expect(screen.queryByText('SomeText')).toBeInTheDocument()
 
-  expect(screen.getByText('Not in the document')).toBeInTheDocument()
+  expect(screen.getByText('SomeText')).toBeInTheDocument()
 })
 
 test('Use userEvent instead of fireEvent', () => {
