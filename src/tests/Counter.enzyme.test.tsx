@@ -1,5 +1,5 @@
 import React from 'react'
-import { CounterCC } from './Counter'
+import { CounterCC } from '../Counter'
 import Enzyme, { shallow } from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
 
