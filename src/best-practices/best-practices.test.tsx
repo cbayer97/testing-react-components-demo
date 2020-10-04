@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
 import { SubmitButton } from './SubmitButton'
-import { EnabledButton } from './EnabledButton'
+import { RedButton } from './RedButton'
 import { DebouncedButton } from './DebouncedButton'
 
 test('Use screen to access selectors', () => {
@@ -49,13 +49,13 @@ test('Use queries accessible to everyone', () => {
 })
 
 test('Dont use snapshot tests', () => {
-  const button = render(<EnabledButton />)
+  const button = render(<RedButton />)
   expect(button).toMatchSnapshot()
 })
 
 test('Use jest-dom matchers', () => {
-  render(<EnabledButton />)
-  const disabledButton = screen.getByRole('button', { name: 'Enabled Button' })
+  render(<RedButton />)
+  const disabledButton = screen.getByRole('button', { name: 'Red Button' })
 
   expect(disabledButton.disabled).toBeTruthy()
 
