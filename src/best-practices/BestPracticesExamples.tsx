@@ -4,8 +4,9 @@ import { NameInput } from './NameInput'
 import { SubmitButton } from './SubmitButton'
 import { RedButton } from './RedButton'
 import { DebouncedButton } from './DebouncedButton'
+import { DebouncedElement } from './DebouncedElement'
 
-export const App: React.FC = () => (
+export const BestPracticesExamples: React.FC = () => (
   <>
     <NameInput />
     <SubmitButton />
@@ -21,5 +22,6 @@ export const App: React.FC = () => (
     <br />
     <br />
     <DebouncedButton />
+    <DebouncedElement />
   </>
 )

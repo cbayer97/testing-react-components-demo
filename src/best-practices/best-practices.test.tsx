@@ -1,10 +1,11 @@
 import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
 import { SubmitButton } from './SubmitButton'
 import { RedButton } from './RedButton'
 import { DebouncedButton } from './DebouncedButton'
+import { DebouncedElement } from './DebouncedElement'
 
 test('Use screen to access selectors', () => {
   const { getByText } = render(<div>SomeText</div>)
@@ -66,4 +67,18 @@ test('Wait for elements to appear', async () => {
   render(<DebouncedButton />)
 
   expect(screen.getByRole('button', { name: 'Debounced Button' })).toBeInTheDocument()
+})
+
+test('Dont perform side effects in waitFor', async () => {
+  render(
+    <>
+      <DebouncedButton />
+      <DebouncedElement />
+    </>,
+  )
+
+  await waitFor(() => {
+    userEvent.click(screen.getByRole('button', { name: 'Debounced Button' }))
+    expect(screen.getByText('I appear after 1 second')).toBeInTheDocument()
+  })
 })

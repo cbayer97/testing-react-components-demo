@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './best-practices/App'
+import { BestPracticesExamples } from './best-practices/BestPracticesExamples'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BestPracticesExamples />
   </React.StrictMode>,
   document.getElementById('root'),
 )

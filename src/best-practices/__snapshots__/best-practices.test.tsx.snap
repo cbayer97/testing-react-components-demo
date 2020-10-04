@@ -9,7 +9,7 @@ Object {
         style="color: red;"
       >
         <button>
-          Enabled Button
+          Red Button
         </button>
       </div>
     </div>
@@ -19,7 +19,7 @@ Object {
       style="color: red;"
     >
       <button>
-        Enabled Button
+        Red Button
       </button>
     </div>
   </div>,

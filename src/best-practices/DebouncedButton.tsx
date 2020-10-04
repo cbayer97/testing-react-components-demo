@@ -4,8 +4,10 @@ export const DebouncedButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setIsVisible(true), 1000)
+    setTimeout(() => setIsVisible(true), 500)
   }, [])
 
-  return isVisible ? <button>Debounced Button</button> : null
+  return isVisible ? (
+    <button onClick={() => console.log('Button Click')}>Debounced Button</button>
+  ) : null
 }
