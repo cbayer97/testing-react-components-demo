@@ -2,7 +2,7 @@ import React from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
-import { SubmitButton } from './SubmitButton'
+import { TranslatedButton } from './TranslatedButton'
 import { RedButton } from './RedButton'
 import { Button } from './Button'
 
@@ -41,7 +41,7 @@ test('Avoid redundant assertions', () => {
 })
 
 test('Use queries accessible to everyone', () => {
-  render(<SubmitButton />)
+  render(<TranslatedButton />)
 
   expect(screen.getByTestId('submit-button')).toBeInTheDocument()
 
@@ -80,4 +80,15 @@ test('Dont perform side effects in waitFor', async () => {
     userEvent.click(screen.getByRole('button', { name: 'Button500' }))
     expect(screen.getByRole('button', { name: 'Button1000' })).toBeInTheDocument()
   })
+})
+
+test('act', () => {
+  render(
+    <>
+      <span>Hi there</span>
+      <Button debounceTime={500}>Button</Button>
+    </>,
+  )
+
+  expect(screen.getByText('Hi there')).toBeInTheDocument()
 })

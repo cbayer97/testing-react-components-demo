@@ -1,14 +1,14 @@
 import React from 'react'
 
 import { NameInput } from './NameInput'
-import { SubmitButton } from './SubmitButton'
+import { TranslatedButton } from './TranslatedButton'
 import { RedButton } from './RedButton'
 import { Button } from './Button'
 
 export const BestPracticesExamples: React.FC = () => (
   <>
     <NameInput />
-    <SubmitButton />
+    <TranslatedButton />
     <br />
     <br />
     <br />
