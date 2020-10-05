@@ -1,10 +1,11 @@
 import React from 'react'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
 import { TranslatedButton } from './TranslatedButton'
 import { RedButton } from './RedButton'
 import { Button } from './Button'
+import { SubmitButton } from './SubmitButton'
 
 test('Use screen to access selectors', () => {
   const { getByText } = render(<div>SomeText</div>)
@@ -82,13 +83,13 @@ test('Dont perform side effects in waitFor', async () => {
   })
 })
 
-test('act', () => {
-  render(
-    <>
-      <span>Hi there</span>
-      <Button debounceTime={500}>Button</Button>
-    </>,
-  )
+test('Dont wrap things in act unnecessarily', () => {
+  const handleSubmit = jest.fn(() => Promise.resolve())
+  render(<SubmitButton handleSubmit={handleSubmit} />)
 
-  expect(screen.getByText('Hi there')).toBeInTheDocument()
+  expect(screen.getByText('not submitted')).toBeInTheDocument()
+
+  userEvent.click(screen.getByRole('button', { name: 'Submit' }))
+
+  expect(handleSubmit).toHaveBeenCalled()
 })
