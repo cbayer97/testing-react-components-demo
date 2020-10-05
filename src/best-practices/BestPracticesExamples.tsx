@@ -3,8 +3,7 @@ import React from 'react'
 import { NameInput } from './NameInput'
 import { SubmitButton } from './SubmitButton'
 import { RedButton } from './RedButton'
-import { DebouncedButton } from './DebouncedButton'
-import { DebouncedElement } from './DebouncedElement'
+import { Button } from './Button'
 
 export const BestPracticesExamples: React.FC = () => (
   <>
@@ -21,7 +20,6 @@ export const BestPracticesExamples: React.FC = () => (
     <br />
     <br />
     <br />
-    <DebouncedButton />
-    <DebouncedElement />
+    <Button />
   </>
 )

@@ -4,8 +4,7 @@ import { NameInput } from './NameInput'
 import userEvent from '@testing-library/user-event'
 import { SubmitButton } from './SubmitButton'
 import { RedButton } from './RedButton'
-import { DebouncedButton } from './DebouncedButton'
-import { DebouncedElement } from './DebouncedElement'
+import { Button } from './Button'
 
 test('Use screen to access selectors', () => {
   const { getByText } = render(<div>SomeText</div>)
@@ -64,7 +63,7 @@ test('Use jest-dom matchers', () => {
 })
 
 test('Wait for elements to appear', async () => {
-  render(<DebouncedButton />)
+  render(<Button debounceTime={500}>Debounced Button</Button>)
 
   expect(screen.getByRole('button', { name: 'Debounced Button' })).toBeInTheDocument()
 })
@@ -72,13 +71,13 @@ test('Wait for elements to appear', async () => {
 test('Dont perform side effects in waitFor', async () => {
   render(
     <>
-      <DebouncedButton />
-      <DebouncedElement />
+      <Button debounceTime={500}>Button500</Button>
+      <Button debounceTime={1000}>Button1000</Button>
     </>,
   )
 
   await waitFor(() => {
-    userEvent.click(screen.getByRole('button', { name: 'Debounced Button' }))
-    expect(screen.getByText('I appear after 1 second')).toBeInTheDocument()
+    userEvent.click(screen.getByRole('button', { name: 'Button500' }))
+    expect(screen.getByRole('button', { name: 'Button1000' })).toBeInTheDocument()
   })
 })
