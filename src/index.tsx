@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BestPracticesExamples } from './best-practices/BestPracticesExamples'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
+import { CounterCC } from './Counter'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BestPracticesExamples />
+    <CounterCC />
   </React.StrictMode>,
   document.getElementById('root'),
 )
