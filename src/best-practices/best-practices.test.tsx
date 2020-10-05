@@ -59,8 +59,10 @@ test('Use jest-dom matchers', () => {
   const disabledButton = screen.getByRole('button', { name: 'Red Button' })
 
   expect(disabledButton.disabled).toBeTruthy()
-
   expect(disabledButton).toBeDisabled()
+
+  expect(disabledButton.innerHTML).toEqual('Red Button')
+  expect(disabledButton).toHaveTextContent('Red Button')
 })
 
 test('Wait for elements to appear', async () => {
