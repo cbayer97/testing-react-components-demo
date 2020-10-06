@@ -20,6 +20,6 @@ export const BestPracticesExamples: React.FC = () => (
     <br />
     <br />
     <br />
-    <Button debounceTime={500}/>
+    <Button debounceTime={500}>Debounced Button</Button>
   </>
 )
