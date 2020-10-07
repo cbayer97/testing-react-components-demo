@@ -85,6 +85,22 @@ test('Dont perform side effects in waitFor', async () => {
   })
 })
 
+test('Dont put multiple assertions in a waitFor', async () => {
+  render(
+    <div id="dialog">
+      <Button debounceTime={500}>End Meeting</Button>
+      <Button debounceTime={500}>Leave Meeting</Button>
+      <Button debounceTime={500}>Cancel</Button>
+    </div>,
+  )
+
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: 'End Meeting' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Leave Meeting' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument()
+  })
+})
+
 test('Dont wrap things in act unnecessarily', () => {
   const handleSubmit = jest.fn(() => Promise.resolve())
   render(<SubmitButton handleSubmit={handleSubmit} />)
